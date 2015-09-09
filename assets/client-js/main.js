@@ -123,7 +123,8 @@ $(function(){
 				var pray4win = player2.picked.length > 2 ? checkWin(player2.picked,'Player-2') : '';
 
 				if(pray4win !== '' && pray4win !== undefined){
-					return pray4win;
+					prompt('Do you want to play another game. Type your response below. \nYes = NewGame  No = Pass').toUpperCase() === 'YES' ? resetGameBoard() : document.write('Thanks for Playing'); 
+					return;
 				} 
 				
 
@@ -132,7 +133,7 @@ $(function(){
 
 			}	
 
-		});
+		});  // closes gameboard event handler.
 
 	};
 
