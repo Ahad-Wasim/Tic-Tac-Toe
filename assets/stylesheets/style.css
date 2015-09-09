@@ -1,0 +1,98 @@
+header h1{
+	border:1px solid black;
+	text-align: center;
+	background:red;
+}
+
+/* Player Scoreboard */
+
+#PlayerBox-Wrapper{
+	float:left;
+	background:grey;
+	display:inline-block;
+	padding:10px;
+}
+
+#PlayerBox{
+	border:1px solid black;
+	display:inline-block;
+}
+
+#Player1-Scoreboard {
+	border-bottom: 1px dashed black;
+}
+
+#Player1-Scoreboard h1{
+	display:inline-block;
+}
+
+#Player2-Scoreboard h1{
+	display:inline-block;
+}
+
+#Player1-Letter{
+	margin-left:10px;
+}
+
+#Player2-Letter{
+	margin-left:10px;
+}
+
+
+/*  Player ScoreBoard */
+
+
+
+/* GameBoard */
+
+#GameBoard-Wrapper{
+	width:100%;
+	background: green;
+}
+
+#GameBoard{
+	display:block;
+	width:308px;
+	margin:0 auto;
+}
+
+div[data-position]{
+	display:inline-block;
+	width:100px;
+	height:100px;
+	background:turquoise;
+	margin-bottom: 5px;
+	/* 
+		This Vertical Align is very important. Comment it out see what happens without it. 
+		URL: http://stackoverflow.com/questions/12834369/div-position-shifts-when-adding-content
+	*/
+	vertical-align: top; 
+}
+
+.boxLetter1{
+	color:blue;
+	font-size: 55px;
+	text-align: center;
+}
+
+.boxLetter2{
+	color:red;
+	font-size: 55px;
+	text-align: center;
+}
+
+
+/* GameBoard */
+
+
+
+.One-Active{
+	color:blue;
+}
+
+.Two-Active{
+	color:red;
+}
+
+
+
