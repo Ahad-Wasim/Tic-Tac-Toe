@@ -6,32 +6,34 @@ $(function(){
 	
 	// Helper Functions
 
-	function CreatePlayer(letter){
+	function CreatePlayer(letter,name){
+		this.name = name;
 		this.letter = letter;
 		this.picked = [];
 	}
 
-	function checkWin(playerList,player){
+	function checkWin(playerList,p,pp){
 
-		console.log('I got called',player)
+		console.log('I got called',p.name)
 
 		for(var i=0;i<winningCombo.length;i++){
 			var count = 0;
 
 			for(var j=0;j<playerList.length;j++){
 				if(winningCombo[i].indexOf(playerList[j]) !== -1){
-					// console.log('found value ' + playerList[j] + ' in ' + ' winningCombo ' + i,winningCombo[i]);	
 					count++
-				} else {
-					// console.log('did not find ' + playerList[j] + ' in ' + ' winningCombo ' + i,winningCombo[i]);
 				}
 			}
 
 			if(count === 3){
-				// count === 0;
-				alert(player + ' WINS')
+				alert(p.name + ' WINS')
 				return 'FINISHED';
 			} 
+
+		}
+
+		if( $('.box').has('h1').length === 9 ){
+			catsGame(pp,p);
 		}
 
 	} // closes checkWin function.
@@ -49,9 +51,12 @@ $(function(){
 		runGame();
 	}
 
-	function catsGame(){
-
-	}
+	function catsGame(playersCurrentTurn,nextPlayersTurn){
+		alert('Cats-Game setting up new board');
+		$('.box').html('');
+		playersCurrentTurn.picked = [];
+		nextPlayersTurn.picked = [];
+	}	
 
 	
 	
@@ -70,9 +75,9 @@ $(function(){
 
 		if(letter === 'X' || letter === 'O'){
 					
-			player1 = new CreatePlayer(letter);
+			player1 = new CreatePlayer(letter,"Player-1");
 			var player2Letter = (letter === 'X') ? 'O' : 'X';
-			player2 = new CreatePlayer(player2Letter);
+			player2 = new CreatePlayer(player2Letter,"Player-2");
 
 			$('#Player1-Letter').html(player1.letter).addClass('One-Active');
 			$('#Player2-Letter').html(player2.letter);
@@ -93,7 +98,8 @@ $(function(){
 
 			if(that.html() !== ''){
 				return;
-			}
+			} 
+
 
 			if(playersTurn){
 
@@ -101,7 +107,7 @@ $(function(){
 				that.html('<h1 class=boxLetter1>' + player1.letter + '</h1>')
 				player1.picked.push(boxNumber);
 
-				var pray4win = player1.picked.length > 2 ? checkWin(player1.picked,'Player-1') : '';
+				var pray4win = player1.picked.length > 2 ? checkWin(player1.picked,player1,player2) : '';
 
 
 				if(pray4win !== '' && pray4win !== undefined){
@@ -120,7 +126,7 @@ $(function(){
 				player2.picked.push(boxNumber);
 
 				// console.log('Player-2 Picks Pushed',player2.picked)			
-				var pray4win = player2.picked.length > 2 ? checkWin(player2.picked,'Player-2') : '';
+				var pray4win = player2.picked.length > 2 ? checkWin(player2.picked,player2,player1) : '';
 
 				if(pray4win !== '' && pray4win !== undefined){
 					prompt('Do you want to play another game. Type your response below. \nYes = NewGame  No = Pass').toUpperCase() === 'YES' ? resetGameBoard() : document.write('Thanks for Playing'); 
